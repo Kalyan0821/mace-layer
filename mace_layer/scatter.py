@@ -43,7 +43,8 @@ def scatter_sum(
             size[dim] = 0
         else:
             size[dim] = int(index.max()) + 1
-        out = torch.zeros(size, dtype=src.dtype, device=src.device)
+        # out = torch.zeros(size, dtype=src.dtype, device=src.device)
+        out = src.new_full(size, 0)
         return out.scatter_add_(dim, index, src)
     else:
         return out.scatter_add_(dim, index, src)
